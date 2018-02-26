@@ -18,7 +18,6 @@ class Player:
 playerOne = Player
 
 while True:
-
     map_info(gameMap, playerOne)
     look_for_path(gameMap, playerOne.location)
     action(input("> "), playerOne)

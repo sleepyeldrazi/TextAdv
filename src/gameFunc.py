@@ -28,7 +28,7 @@ def map_info(current_map, pl):
 
 def moveTo(cmd, pl):
     pl.oldLoc["x"] = pl.location["x"]
-    pl.oldLoc["y"] = pl.oldLoc["y"]
+    pl.oldLoc["y"] = pl.location["y"]
 
     if cmd[1][0] == "n":
         pl.location["y"] = pl.location["y"] - 1
