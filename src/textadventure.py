@@ -25,11 +25,12 @@ def look_for_path(current_map, loc):
 
 
 def map_info(current_map, pl):
+    if current_map[pl.location["y"]][pl.location["x"]] == 0:
+        print("You can't go there, going back")
+        pl.location["x"] = pl.oldLoc["x"]
+        pl.location["y"] = pl.oldLoc["y"]
     if current_map[pl.location["y"]][pl.location["x"]] == 1:
         print("Forest")
-    elif current_map[pl.location["y"]][pl.location["x"]] == 0:
-        print("You can't go there")
-        pl.location = pl.oldLoc
     elif current_map[pl.location["y"]][pl.location["x"]] == 10:
         print("Crossroad")
     elif current_map[pl.location["y"]][pl.location["x"]] == 11:
@@ -45,7 +46,6 @@ def action(command, pl):
     entered_command = command.split()
     if entered_command[0] in available_actions:
         if "go" in command:
-            pl.oldLoc = pl.location
             if entered_command[1][0] == "n":
                 pl.location["y"] = pl.location["y"] - 1
             elif entered_command[1][0] == "s":
@@ -56,12 +56,14 @@ def action(command, pl):
                 pl.location["x"] = pl.location["x"] - 1
             else:
                 print("I don't understand")
+            print(playerOne.location)
+            print(playerOne.oldLoc)
 
 
 playerOne = Player
 
 while True:
-    # print(playerOne.location)
+
     map_info(gameMap, playerOne)
     look_for_path(gameMap, playerOne.location)
     action(input("> "), playerOne)
